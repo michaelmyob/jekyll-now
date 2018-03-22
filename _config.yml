@@ -86,4 +86,4 @@ exclude:
   - CNAME
 
 
-theme: modernist
+theme: jekyll-theme-modernist
