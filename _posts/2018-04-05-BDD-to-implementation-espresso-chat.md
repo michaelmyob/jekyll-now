@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Espresso Chat App: BDD To Implementation"
-tags: workshops
+tags:
 ---
 
 ## The challenge of BDD
@@ -21,7 +21,7 @@ Process:
 
 - Not only this, as soon as we tried to implement parts of our client and server, we started going around in circles, deleting that implementation, heading back up to behaviour again, and then implementing again. It seemed that both of us were confused about how and what to implement, since we would take a path and code something, without knowing the end goal of where we were trying to go.
 - Our feedback from Jon was to go back to our client ASAP. 'You don't know what to do! Go back to your PM!'.
-- We then went back to our mentor, got [some clear requirements(https://i.imgur.com/rrhaJ2V.jpg). We then knew where we needed to go...
+- We then went back to our mentor, got [some clear requirements](https://i.imgur.com/rrhaJ2V.jpg). We then knew where we needed to go...
 
 `Key Takeaway:` Always gather requirements from your Product Manager early on (in this case it was Guy acting as the PM), and ask what the highest priority is in those requirements.
 
