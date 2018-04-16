@@ -36,7 +36,7 @@ Issues & Conflicts:
 - We spent the most time discussing the second one here, and my view is that once you've made that profit, it shouldn't update afterwards. Although Pedro's view was that the profit _should_ update later if a lower amount appears, because a lower amount of capital would be required as your investment. While this is logical, it is not mentioned in the specification and an assumption would need to be made on this point.
 - I believe that the finance principle of the 'time value of money' applies here - if you can make a profit as early as possible, that is more important than having a profit with the lowest initial capital investment. It's a point of debate that we didn't resolve, but I think both solutions have merit.
 - For the first situation, I decided to have a go at my own solution for that, make a branch, make a pull request, then have Pedro review it, just to try a new pairing strategy.
-
+- `Key Takeaway:` Assumptions sometimes have to be made. Have strong justifications for them (although in reality it's likely that the PO or similar will clarify it).
 
 ***
 
