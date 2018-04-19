@@ -4,8 +4,6 @@ title: "Effective Java Ch.10: Exceptions"
 tags:
 ---
 
-##
-
 Background:
 - During the Payslip Project, my mentor, Guy, recommended that I read the exceptions chapter of _Effective Java_, which is one of the best text books for Java best practices.
 - I've been progressively reading this chapter week by week, for about 3 weeks now. I found it sometimes to be a difficult read since it's very in depth and highly technical, meaning I've had to revisit parts of the chapter several times to understand it.
