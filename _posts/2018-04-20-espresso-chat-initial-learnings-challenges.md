@@ -46,7 +46,7 @@ Then, on Thursday 19th April, we also had my mentor, Guy, come to pair with us. 
 - It's important to have a strict driver and navigator, don't stray from the process.
 - _while(true)_ loops are very bad practice and the MYOB linter is not going to allow you to compile if you have this in production code. We talked through how to refactor some of our server logic when it prompts the client to enter a nickname and that nickname is taken, we need to re-prompt the client again. We could have done this with more of a method call step-by-step process, like a message-driven or event-driven process.
 - Also, in eliminating _while(true)_ loops, you could use a flag. We used a flag called _isSignedUp_ to follow Java convention with the prefix "is" and so it reads more like plain English later on. Therefore, we adjust the flag's value to true if a client becomes registered, since our register method returns true upon such an occurrence.
-- `Key Takeaway:` Avoid while loops. A while within a while within a while = you're going to have a bad time.
+- `Key Takeaway:` Avoid while (true) loops. A while (true) within a while within a while (true) = you're going to have a bad time.
 
 ### Next Steps:
 - We really need to get back to our tests, because we've gone so deep into getting basic functionality to work just to send one message from one client to another, that we have no automation in the way we test whether our system is working. We'll focus on this, as well as cleaning up and refactoring big blocks into smaller methods, and simplifying where possible, trying to incorporate Java 8 features, as Guy recommended.
