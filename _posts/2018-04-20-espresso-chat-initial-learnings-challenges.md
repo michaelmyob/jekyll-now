@@ -24,11 +24,13 @@ tags:
 - On the server side, we moved the logic for registering a client (upon their first connection with the server) to all be completed in the ServerWorker thread, rather than on the main server which is single threaded. This now meant that two clients could register nicknames with the server at the same time. We also refactored to remove the double _while_ loop in the server.
 - Following this, we followed the mentors' advice to encapsulate the socket/message sending and receiving in its own class, that we called _ClientSocket_ (not the best name, will improve later). We then removed all uses of our _ChatUtilities_ utility class, which now means that the server and client are less tightly coupled because they don't rely on this central class to both operate.
 - We then introduced try-with-resources where we could, and wrapped some of our logic that was in large methods into seperate smaller private methods.
+- `Key Takeaway:` Always remember SOLID principles, otherwise it will make life harder for you!
 
 ### List all clients online + Disconnect/Quit:
 
 - In my first task coding alone on this project, when Sina was elsewhere, I decided to make two small changes that we discussed earlier. One was allowing a client to query the server on listing all clients online, which was a simple loop which iterated over the server's hashmap. I tried to ensure the server didn't expose its data structure by just returning a String with the list of clients from the server, so that the ServerWorker didn't know about the details of the server's internal workings in this regard.
 - I also had an attempt at the logic of when a client decides to quit. I made a poor judgement call here, as I decided to have the server send a _STATUS_QUIT_NOW_ message that the client could read and process as an indicator of quitting. However, this means that the client is now tightly coupled to the server, and if that message were to change in future, the client would also have to be changed. To prevent this, Sina had a great idea (one of many) to just close the socket on the server upon receiving a quit request from the client. By closing the socket, the connection is terminated and the client's while loop ends.
+- `Key Takeaway:` Don't jump to conclusions when coming up with logic if it's the quickest way, it might not be the best way. Sometimes it's good to have a second person review, or take a quick break and come back to it again so you see what's obviously in front of you.
 
 ### Challenges faced: "message from ____"
 
@@ -44,10 +46,12 @@ Then, on Thursday 19th April, we also had my mentor, Guy, come to pair with us. 
 - It's important to have a strict driver and navigator, don't stray from the process.
 - _while(true)_ loops are very bad practice and the MYOB linter is not going to allow you to compile if you have this in production code. We talked through how to refactor some of our server logic when it prompts the client to enter a nickname and that nickname is taken, we need to re-prompt the client again. We could have done this with more of a method call step-by-step process, like a message-driven or event-driven process.
 - Also, in eliminating _while(true)_ loops, you could use a flag. We used a flag called _isSignedUp_ to follow Java convention with the prefix "is" and so it reads more like plain English later on. Therefore, we adjust the flag's value to true if a client becomes registered, since our register method returns true upon such an occurrence.
+- `Key Takeaway:` Avoid while loops. A while within a while within a while = you're going to have a bad time.
 
 ### Next Steps:
 - We really need to get back to our tests, because we've gone so deep into getting basic functionality to work just to send one message from one client to another, that we have no automation in the way we test whether our system is working. We'll focus on this, as well as cleaning up and refactoring big blocks into smaller methods, and simplifying where possible, trying to incorporate Java 8 features, as Guy recommended.
 - We also need to handle the situation where a client exits or is disconnected, that they are removed from the server's hashmap so that they don't appear as 'online' to other users.
+- `Key Takeaway:` Focus on Clean Code book club learnings that we've been talking about weekly, and get used to more Java 8 features since they are used widely in the company.
 
 ***
 
