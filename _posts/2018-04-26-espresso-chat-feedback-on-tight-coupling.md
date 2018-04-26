@@ -5,7 +5,7 @@ tags:
 ---
 
 ### Background:
-- The project continues in iteration 2 (again) [as previously described](https://michaelmyob.github.io/2018/04/20/2018-04-20-espresso-chat-initial-learnings-challenges).
+- The project continues in iteration 2 (again) [as previously described](https://michaelmyob.github.io/2018/04/20/espresso-chat-initial-learnings-challenges.html).
 - Feedback on Tuesday Monday 23rd April: This was a larger feedback session with considerable whiteboarding.
 
 ### Feedback comments from mentors:
