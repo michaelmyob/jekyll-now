@@ -35,6 +35,9 @@ tags:
 - We've got to a point now where we're so far deep into implementation, that we've commented out all of our BDD tests, because they don't make much sense in the way the project has evolved, but also, that the feedback we're getting every week has a new focus every time, and often, requirements are changing each week too.
 - I feel that there are elements of this, that it's representative of a real world project with constantly changing requirements, quick deadlines, quick feedback, and priorities of all varying level to complete before the next deadline. But I don't think in all of this, that we should be compromising our tests.
 
+### To do next:
+- Clean code
+- Testing
 
 ***
 
