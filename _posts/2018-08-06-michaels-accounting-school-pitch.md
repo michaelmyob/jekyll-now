@@ -32,6 +32,6 @@ __The Call To Action__
 
 I’d like to gather your interest in something like this and set up an initial trial group as I put the content together and gather regular feedback. Would anyone be keen to put themselves forward for a commitment like this?  
 
-I’m a morning person. I’m thinking between <mark>**8am and 9.30am once per week on a Tuesday or Thursday**</mark>, likely starting **end of August or early September**. I know this won't work for everyone. In a future revision I'm happy to run this in a later time slot.
+I’m a morning person. I’m thinking between **<mark>8am and 9.30am once per week on a Tuesday or Thursday</mark>**, likely starting **end of August or early September**. I know this won't work for everyone. In a future revision I'm happy to run this in a later time slot.
 
-<mark>I will take the **first 10 people** that write that they’re interested in the thread (not reactions). Hence, please reply on the Slack message as a thread if interested.</mark>
+I will take the **<mark>first 10 people</mark>** that write that they’re interested in the thread (not reactions). Hence, please reply on the Slack message as a thread if interested.
