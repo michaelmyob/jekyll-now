@@ -1,13 +1,13 @@
----
+----
 layout: default
 title: "HTTP Server over the past 10 days"
 tags:
----
+----
 
 ## End of protege program task: Build a HTTP Server
 ### In this post, I discuss my experiences blocking out 10 days to work on the HTTP Server task, required of proteges at the end of their crew rotations, day by day.
 
---
+---
 
 #### HTTP server task - Cob Spec - Day 1
 
@@ -19,7 +19,7 @@ Today: Come up with a rough design architecture using the Jon Eaves 3 steps appr
 
 My concern right now is how do I test a multithreaded application... but I feel like I shouldn’t be worried about that. I need the concepts of what does a HTTP server actually do. Then I’ll get to that.
 
---
+---
 
 I’m starting with the high level architecture as follows:
 
@@ -48,7 +48,7 @@ I’m thinking right now it’s easier to work with strings where possible but k
 
 I’ve taken this BDD style from Jon Eaves when he was helping Sina and I with our chat app. I feel that what I took most from those discussions was to ignore implementation details here- forget about needed a socket etc, all we need is a client, server, the request, response and assemble those things together above in a way that we should return the right response from a certain request. I’m ignoring multithreading right now but I’m sure I’ll get to that.
 
---
+---
 
 ```
 Response response = new Response(client.request(HOST, PORT, request));
@@ -57,7 +57,7 @@ I eventually got to implementing this line, and something doesn’t feel right. 
 On second thoughts, I’m leaving this concept as is but not introducing it into the tests directly, rather, introducing it contained within the objects that I test (more of an integration test). I think it might be good to not have clients and servers involved here because these are the things that will be contained within those clients and servers.
 ```
 
---
+---
 
 End of Day 1 reflection:
 
@@ -74,7 +74,7 @@ It’s bizarre because I have a main method that creates a server and listens fo
 
 Finally, for the command line arguments (-p and-d) for port and directory I found `http://commons.apache.org/proper/commons-cli/usage.html` - a CLI library that lets you create custom args for your CLI app. Looks easy to use, will suss it out.
 
---
+---
 
 ### HTTP server task - Cob Spec - Day 2
 
@@ -88,14 +88,14 @@ No progress today: consumed by workshops and meetings
 - Financial Reporting Learning Lab discussion 45min
 
 
---
+---
 
 ### HTTP server task - Cob Spec - Day 3
 
 My approach today:
 - Timebox my debugging of getting CobSpec to work to 1hr; then move onto implementing the SimpleGet actual code. It’s possible that it doesn’t work because I’ve hardcoded responses. Although I don’t think I’d get a connection refused error in that case, anyway, will try to fix first thing.
 
---
+---
 
 Debugging to try to get Cob Spec to not give me a Connection Refused Error:
 
@@ -115,13 +115,13 @@ INFO: Retrying request to {}->http://localhost:5000
 - I’ve re-cloned and re-compiled the Fitness repo.
 - Honestly I don’t know what to do at this point . I’ve re-read the README on the CobSpec repo and nothing is evident about troubleshooting this particular problem.
 
---
+---
 
 Right now I’m just going to move on, even though it annoys me that it doesn’t make sense of why I’d be getting a Connection Refused error, I feel that time will be wasted if I move on this further right now. So what I’ll do is build a more-real implementation of getting ‘/file1’ and see what happens in the Fitnesse UI. I don’t know if that will stop the Connection Refused error.
 
 If it doesn’t, I will ask around and see if anyone else encountered this issue as I don’t want to hinder myself from progressing. Because of this roadblock, I now feel that this task will take me way longer than the end of next week. Even though it frustrates me, I’ve accepted that I might not be 100% finished next week as planned. I will need to work on this in future after I’m an associate dev it appears.
 
---
+---
 
 Spent the morning doing a real implementation of finding ‘/file1’ via a socket. `[Git Commit 2154ee4]`
 
@@ -145,7 +145,7 @@ Could not complete testing: fitnesse.testsystems.slim.SlimCommunicationException
 - I get a client successfully connected to a server via socket when I test manually. I just output a basic console log message on success. I can’t get Fitnesse to output this. It seems that Fitnesse gives me a Connection Refused exception again.
 - Not really sure what to do now.
 
---
+---
 - I asked Sina for some advice at lunch time to see if he experienced any issues. Unfortunately he did this task so long ago that he wasn’t able to offer specific advice.
 - I thought the one thing I was missing that maybe I was lacking is the handling of the CLI arguments for-p and-d, even though I was defaulting to port 5000 and the `PUBLIC_DIR` env variable. After implementing this with the Apache Commons CLI library, the same error still occurs.
 - I still am not sure what to do with this timeout/hanging issue... I’m looking at the Fitnesse user guide but nothing is relevant when I try to debug within the UI, I’m not getting useful error messages that I can do something with.
@@ -169,7 +169,7 @@ And now I return to having Connection Refused errors. At least it’s not timing
 
 On second thoughts, this doesn’t seem right. I think it should just be Main, as the package name isn’t named ‘main’. I just don’t know how to debug the timeout error. I’ve now tried playing with various different Gradle configurations to see if my Jar wasn’t being compiled properly. I feel like I’ve been through every combination of Jar creation possible with Gradle.
 
---
+---
 
 
 ### HTTP server task - Cob Spec - Day 4
@@ -184,7 +184,7 @@ In this v2 approach, what I’ll do is:
 My goal for today and tomorrow if I’m being realistic:
 - Start a new project from scratch and get the DirectoryListing Cob Spec test to pass.  
 
---
+---
 
 I decided to slow down and try a new v2 repository first- I wrote a simple server that outputs ‘now listening’ before the socket accept method, and then ‘accepted’ after it was accepted. I ran this manually. I then ran Cob Spec. I got the same Connection Refused error but weirdly, when I run the app manually in IntelliJ, I get the ‘accepted’ message correctly after Cob Spec throws that error. I don’t know if Cob Spec / Fitnesse is unable to run my Jar file still, but anyway, it’s a good step forward that at least I know Fitnesse can call my open port and see something, even if it’s not in the right way.
 
@@ -224,7 +224,7 @@ I just looked up some tutorials on CURL that let you just do a HEAD request and 
 
 On second thoughts, I think the other header fields don’t matter for this right now. I think this test might just bet checking the response code when the directory is found. Then for the next part, the response code when the file is not found. Which also leads me to think now we need a way to check files and directories and whether they exist for this test. So what I’m thinking is that we check the URI with whether it has a dot (.) in it, since directories can’t have dots in their descriptions. This should hopefully be enough to distinguish them.
 
---
+---
 
 I got to a point in refactoring my v1 with the suggestions above (CRLF and HEAD, with a “.” Check for files)- I got to a point where I feel stuck again. The main reason is that when searching for the “/“ root directory, the way that my code is structured is that inside my Client class I have a response, and that response contains a public directory variable now since I needed to pass that down from the server to the request parser, to know what to do with the URI, and in the client I check for that response.
 
@@ -237,7 +237,7 @@ After feeling extremely frustrated on this, I’ve decided to ask for some gener
 
 Based on this advice, I am going to proceed in starting again working on the v2 repository (`https://github.com/michaelmyob/michael_HTTP_Server_COB_SPEC_v2`)  with a new approach.
 
---
+---
 
 [insert diagram]
 
@@ -251,7 +251,7 @@ This is where I recall a lot of difficulty in testing when Sina & I worked on ou
 
 I’m feeling extremely demotivated right now, as if I’ve tried everything I can think of. I feel that I need to start fresh again tomorrow as I’ve gone around in a lot of circles today. I feel comfortable that I started again with a v2, but I feel frustrated that I can’t even get one simple test to run, and that Fitnesse is not revealing why it’s giving me these errors.
 
---
+---
 
 Towards the end of the day today, I’ve been experimenting using curl in my terminal to try and replicate what Fitnesse is doing.
 
@@ -277,7 +277,7 @@ Closing connection 0
 ```
 I keep getting this ‘Connection reset by peer’ error. I’ve googled the error and nothing similar to my problem presented a solution.
 
----
+----
 
 FINALLY- some success! End of day 4. Felt like I’ve been banging my head against the wall all day with every corner exhausted... Started working on this at 7.30am today. Finally at 5.45pm I got my first Fitnesse test to pass!!!
 
@@ -290,7 +290,7 @@ What have I done in this final hour of of the day?
 - I feel that passing this one test, although it was hacky and incomplete, has given me a lot of confidence to proceed with the remainder of the task. I had to remind myself on the way home that no matter how hard problems get, stick with the problem, remember how lucky we are to be working on software rather than in boring business jobs pushing paperwork, and remember that anything you learn here will make you a stronger developer.
 
 
---
+---
 
 ### HTTP server task - Cob Spec - Day 5
 
@@ -303,7 +303,7 @@ Today’s planned approach:
 
 - Pass the test for SimpleHead and SimpleGet with real implementations, and ensure there is a clean design and good tests that use test stubs, as I mentioned yesterday. I won’t check socket streams in my tests because that’s very hard, but I will check expected responses when a particular request is sent. At least that way, I know my business logic works, and it is just then sent via a different method (via a socket stream) in the real implementation, of which is tested via Fitnesse / Cob Spec.
 
---
+---
 
 Extremely productive day today in completing the SimpleHead tests and getting them all to pass
 
@@ -316,13 +316,13 @@ Extremely productive day today in completing the SimpleHead tests and getting th
 - On that point about files, I also realised that I didn’t have to set my public directory as  the unix style of “./public”, just setting it as “public” is what works. I found this out because my automated tests weren’t working as expected when I implemented the file and directory location checking. I used File’s absolute directory output to figure this out.
 - I’m trying to use interfaces where possible here too, with the Responder class. I then implemented it with HeadResponder(HTTPMessage message). I feel that I can probably have a different responder on each type of response, since it will always take in a HTTPMessage.
 - I also decided to delete all concepts of a “Client” or a “HTTPClient”- I was using this to test originally in my v1 and I clung onto it too much when it wasn’t really needed. This again comes back to the fact that I didn’t want to go down the difficult path of testing actual sockets waiting for responses from a real stream and having my tests time that- I want my tests to test business logic and not setting up network streams etc. Initially, I had a ‘client stub’ made up of a HTTPMessageCreator and a HTTPResponseGenerator. Basically just takes a message and gives a response. Then I realised, actually, this is what the server is doing, I’m mimicking the server’s behaviour. I left this until last because I just didn’t know how to encapsulate it. I initially made it as a private helper method in my SimpleHead test, as a “ServerResponseStub”, but then realised I probably want to use that later for other tests so I brought it out into its own class to be used by other test classes.
-- Overall, those were the major things I discovered and implemented today- I also tried to just clean up a lot of my code, remove redundant comments and make it readable where possible, renaming where I thought was worthwhile. In this process, I also learned how to use ‘git commit--amend’ for the first time.
+- Overall, those were the major things I discovered and implemented today- I also tried to just clean up a lot of my code, remove redundant comments and make it readable where possible, renaming where I thought was worthwhile. In this process, I also learned how to use ‘git commit---amend’ for the first time.
 
 
 End of week 1 complete; signing off at 4.43pm Friday.
 1 Fitnesse / Cob Spec test complete.
 
---
+---
 
 
 
@@ -338,7 +338,7 @@ I also feel that one important piece of learning that I want to come back to is 
 
 TODO: Come back to this at the end of the project.
 
---
+---
 
 - First, I refactored the location of my source files. Everything was lumped in the Server package, now I’ve split it into different components.
 - One thing I’m not sure how to solve yet, as I write my first failing test, is how to obtain the retrieve the correct header contents separately to the body contents. I think I need may need to split my HTTPMessage to have getters for those things, because in Fitnesse we need to compare not only the 200 OK response, but the contents within the file requested too. One thing I’m also not sure of yet is how a body represents the file contents too, is it just text after the line break after the header or anything else too. To investigate.
@@ -346,7 +346,7 @@ TODO: Come back to this at the end of the project.
 - A couple of things with this approach so far ^- this was actually relatively quick to discover and debug, manually testing and hacking away at. However, if I wrote a failing test first and went TDD style, it would have been better because I would know that I didn’t introduce any breaking changes from my previous work (in passing the HEAD tests). I just wanted to explore if it was possible going down this hacky path and seeing what would happen. Overall I do agree with old mate Kent Beck that TDD is the better way here, and especially because I feel that as I add more complexity, I want to reduce the duplication that I’ve just introduced and not break all of the previous work I’d done.
 - Reflecting on the use of this CharBuffer, one thing I’m not sure how to do most elegantly is to allocate the right amount of space for the buffer to read before it’s been read. It seems like a typical hard computer science problem- how do you allocate memory when you don’t know how much memory to allocate. I’m I using the right structure, or could I just an ArrayList of characters, but then if I do that, I’m unable to use BufferedReader, which introduces a lot of breaking changes. For now, my approach works. I’ve set the buffer to a reasonable maximum but it still feels like a bit of a waste of memory to allocate space you won’t use.
 
---
+---
 
 Update- halfway through the day I got the SimpleGet tests passing.
 
@@ -358,7 +358,7 @@ It appears the FourOhFour tests pass in Fitnesse / Cob Spec. I appear to be hand
 
 I will now focus on getting the SimpleOptions tests working. I haven’t come across OPTIONS for a while but it seems straight forward. Just outputs the commands you can use. I’m going to revert back to a TDD approach this time to try doing things a bit more ‘properly’ (as opposed to ‘hacky’...)
 
---
+---
 
 
 
@@ -390,12 +390,12 @@ return "HTTP/1.1 200 OK\r\n" + "\r\n" +
 - I just returned this hard coded result, with the CRLF line breaks, and it passes! So now I get it- it just wanted the body as a text-based list of files. I haven’t seen this before in other web servers so it seems weird that this would be the case, I as I said earlier for security reasons you would never have this listed publicly of course, but that’s ok. It’s relieving to have this test pass.
 - I’ll I now focus on creating a real implementation for this and remove the hard coded result. I’ll do this in TDD style, with a failing test first.
 
---
+---
 
 - Doing a real implementation wasn’t too hard for DirectoryListing. The only small hurdle was to ensure the file name contents are output in alphabetical order, and I used a Java 8 lambda do sort my list of filenames which seemed like a cleaner result.
 - I did a bit of refactoring in my GetResponder. I now have clearer paths to execution for a GET. You either are getting a file or getting a directory, and those paths are clear. I still am not 100% happy with the code inside the private methods as of right now. The getFileContents and getDirectoryContents are over 10 lines long each, but it’s not just about the length, I feel that I need to handle exceptions better here, and actually throw an exception up to the appropriate level, maybe the HTTPResponseGenerator, if a directory can’t list contents for whatever reason, or can’t list file contents for whatever reason. I’ll leave this for now and move to the next test though, as this is minor right now and I’m still focusing on happy path.
 
---
+---
 
 Looking at what to do next, Basic Auth looks a bit tricky. I need to return certain allowable commands on a particular resource. It’s not the parsing of header sections or responses that I’m concerned about, it’s how I make the /logs directory set as a protected directory. My gut instinct is to start my server with a configuration setting of /logs being protected by basic auth and set the allowable fields. I just don’t know where else you’d have this configuration set up, and whether that should be changeable while the server is running? But maybe I’m overthinking that. I think I’ll just try it via configuration.
 
@@ -403,7 +403,7 @@ I also looked at DirectoryLinks. It seems a bit of an usual one... getting the r
 
 I think I need to understand this partial content first before I get to that, so I can see what those files are doing differently not to be listed in the list of linked files, so I’ll give the PartialContent tests a go now.
 
---
+---
 
 
 
@@ -422,7 +422,7 @@ Today’s plan:
 - Complete the SimpleOptions tests, except for the auth-related one
 - Start thinking about how I can handle auth and the protected logs folder via configuration, now that I know I can parse header rows from the work above in PartialContent, I should be able to re-use that parsing functionality.
 
---
+---
 
 
 
@@ -447,7 +447,7 @@ Today, I hope to get the Partial content request tests passing in Cob Spec. When
 I feel a bit disappointed that I didn’t get more done earlier but I’m committed to solving this in my own time and finding a way to chip away at this task. Even though it can be frustrating at times, I think it’s an important learning tool for myself. It’s not often we get to build something from scratch and learn from our mistakes. It will be valuable getting feedback on this in future, too.
 
 
---
+---
 
 ### HTTP server task - Cob Spec - Day 10
 
