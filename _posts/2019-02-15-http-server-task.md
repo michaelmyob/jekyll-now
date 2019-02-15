@@ -1,8 +1,8 @@
-----
+---
 layout: default
 title: "HTTP Server over the past 10 days"
 tags:
-----
+---
 
 ## End of protege program task: Build a HTTP Server
 ### In this post, I discuss my experiences blocking out 10 days to work on the HTTP Server task, required of proteges at the end of their crew rotations, day by day.
